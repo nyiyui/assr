@@ -12,44 +12,45 @@
     };
   };
 
-  config = let
-    cfg = config.assr.eduroam;
-  in lib.mkIf config.assr.eduroam.enable {
-    systemd.services.wpa_supplicant.serviceConfig.BindReadOnlyPaths =
-      cfg.client-cert;
-    networking.networkmanager.ensureProfiles.environmentFiles = [
-      cfg.env
-    ];
-    networking.networkmanager.ensureProfiles.profiles.eduroam = {
-      "802-1x" = {
-        ca-cert = "${./usertrustrsaca.cer}";
-        client-cert = cfg.client-cert;
-        domain-suffix-match = "lawn.gatech.edu";
-        eap = "tls;";
-        identity = "kshibata6@gatech.edu";
-        private-key = cfg.client-cert;
-        private-key-password = "$EDUROAM_PRIVATE_KEY_PASSWORD";
-      };
-      connection = {
-        id = "eduroam (GT)";
-        type = "wifi";
-        uuid = "a22a03f6-ddb5-455c-80f2-024cfc52266a";
-      };
-      ipv4 = {
-        method = "auto";
-      };
-      ipv6 = {
-        addr-gen-mode = "stable-privacy";
-        method = "auto";
-      };
-      proxy = { };
-      wifi = {
-        mode = "infrastructure";
-        ssid = "eduroam";
-      };
-      wifi-security = {
-        key-mgmt = "wpa-eap";
+  config =
+    let
+      cfg = config.assr.eduroam;
+    in
+    lib.mkIf config.assr.eduroam.enable {
+      systemd.services.wpa_supplicant.serviceConfig.BindReadOnlyPaths = cfg.client-cert;
+      networking.networkmanager.ensureProfiles.environmentFiles = [
+        cfg.env
+      ];
+      networking.networkmanager.ensureProfiles.profiles.eduroam = {
+        "802-1x" = {
+          ca-cert = "${./usertrustrsaca.cer}";
+          client-cert = cfg.client-cert;
+          domain-suffix-match = "lawn.gatech.edu";
+          eap = "tls;";
+          identity = "kshibata6@gatech.edu";
+          private-key = cfg.client-cert;
+          private-key-password = "$EDUROAM_PRIVATE_KEY_PASSWORD";
+        };
+        connection = {
+          id = "eduroam (GT)";
+          type = "wifi";
+          uuid = "a22a03f6-ddb5-455c-80f2-024cfc52266a";
+        };
+        ipv4 = {
+          method = "auto";
+        };
+        ipv6 = {
+          addr-gen-mode = "stable-privacy";
+          method = "auto";
+        };
+        proxy = { };
+        wifi = {
+          mode = "infrastructure";
+          ssid = "eduroam";
+        };
+        wifi-security = {
+          key-mgmt = "wpa-eap";
+        };
       };
     };
-  };
 }
