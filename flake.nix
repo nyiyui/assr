@@ -24,6 +24,7 @@
       nixosModules = {
         eduroam = import ./eduroam;
         wlsunset = import ./wlsunset;
+        displaylink = import ./displaylink.nix;
       };
     }
     // flake-utils.lib.eachSystem (import systems) (
