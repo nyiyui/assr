@@ -8,6 +8,7 @@
   outputs = { self, nixpkgs, ... }: {
     nixosModules = {
       eduroam = import ./eduroam;
+      wlsunset = import ./wlsunset;
     };
   };
 }
