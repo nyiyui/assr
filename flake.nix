@@ -26,6 +26,7 @@
         wlsunset = import ./wlsunset;
         displaylink = import ./displaylink.nix;
         ocproxy = import ./ocproxy.nix;
+        appliance = import ./appliance;
       };
     }
     // flake-utils.lib.eachSystem (import systems) (
