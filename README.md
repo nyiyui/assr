@@ -1,3 +1,9 @@
+Collection of NixOS modules I use. Some modules are specific to Georgia Tech, where I am a student, and some are more generally applicable.
+
+Requirements:
+- systemd-based system with NetworkManager
+- Wayland
+
 Flake outputs:
 - `nixosModules`
   - `eduroam` - setup Georgia Tech Eduroam settings using NetworkManager
