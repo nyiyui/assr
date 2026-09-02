@@ -25,6 +25,7 @@
         eduroam = import ./eduroam;
         wlsunset = import ./wlsunset;
         displaylink = import ./displaylink.nix;
+        ocproxy = import ./ocproxy.nix;
       };
     }
     // flake-utils.lib.eachSystem (import systems) (
