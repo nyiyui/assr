@@ -144,6 +144,7 @@
     };
     environment.systemPackages = [
       (pkgs.writeShellScriptBin "ocproxy-provide-otp" ''
+        1>&2 echo "Enter OTP:"
         tee ${lib.escapeShellArg config.assr.ocproxy.otp-fifo} > /dev/null
       '')
     ];
