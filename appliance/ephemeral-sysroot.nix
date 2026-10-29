@@ -31,14 +31,6 @@ in
     default = "64G";
   };
 
-  config.systemd.repart.partitions = {
-    ephemeral-sysroot = {
-      Type = "linux-generic";
-      Label = partlabel;
-      SizeMinBytes = config.assr.appliance.ephemeral-sysroot-size;
-      SizeMaxBytes = config.assr.appliance.ephemeral-sysroot-size;
-    };
-  };
   config.boot.initrd.systemd.storePaths = with pkgs; [
     cryptsetup
     e2fsprogs
