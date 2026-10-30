@@ -150,6 +150,13 @@ in
           SizeMinBytes = config.assr.appliance.verity-hash-size;
           SizeMaxBytes = config.assr.appliance.verity-hash-size;
         };
+        
+        ephemeral-sysroot = {
+          Type = "linux-generic";
+          Label = "ephemeral-sysroot";
+          SizeMinBytes = config.assr.appliance.ephemeral-sysroot-size;
+          SizeMaxBytes = config.assr.appliance.ephemeral-sysroot-size;
+        };
       };
     };
   };
